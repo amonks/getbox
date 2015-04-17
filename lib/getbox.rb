@@ -1,4 +1,6 @@
 require 'getbox/version'
+require 'pry'
+require 'nokogiri'
 require 'capybara/dsl'
 require 'capybara-webkit'
 require 'open-uri'
@@ -15,17 +17,19 @@ module Getbox
   def prompt
     puts "What's your github username?"
     username = gets.chomp
-    puts "How about your password?"
+    puts "How about your password, eh??"
     password = gets.chomp
 
     puts "Where should I save your gists?"
     file = gets.chomp
 
     gists = getGistsFromSite(username, password)
+    binding.pry
     writeToFile(JSON.pretty_generate(gists), file)
   end
 
   def getGistsFromSite(username, password)
+    whitelist_urls
 
     puts "visiting app.gistboxapp.com"
     visit '/'
@@ -78,8 +82,13 @@ module Getbox
     json = JSON.pretty_generate(object)
     File.open(file, 'w') { |file| file.write(json) }
   end
+
+  def whitelist_urls
+    page.driver.block_unknown_urls
+    urls = [
+      'app.gistboxapp.com',
+      'github.com',
+    ]
+    urls.each { |url| page.driver.allow_url(url) }
+  end
 end
-
-
-include Getbox
-

@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
 
-  spec.add_dependency "capybara"
-  spec.add_dependency "capybara-webkit"
-  spec.add_dependency "nokogiri"
-  spec.add_dependency "pry"
+  spec.add_runtime_dependency "capybara"
+  spec.add_runtime_dependency "capybara-webkit"
+  spec.add_runtime_dependency "nokogiri"
+  spec.add_runtime_dependency "pry"
 end
