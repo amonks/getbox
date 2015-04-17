@@ -14,7 +14,7 @@ module Getbox
   Capybara.app_host =  "http://app.gistboxapp.com"
   Capybara.run_server = false
 
-  def promptUser
+  def prompt
     puts "What's your github username?"
     username = gets.chomp
     puts "How about your password?"
@@ -41,10 +41,6 @@ module Getbox
     end
     puts "gathering gists"
     getGistsFromHtml(page.html)
-  end
-
-  def writeToFile(string, file)
-    File.open(file, 'w') { |file| file.write(string) }
   end
 
   def getGistsFromFile(file)
@@ -79,6 +75,11 @@ module Getbox
     end
 
     gists
+  end
+
+  def writeToFile(object, file)
+    json = JSON.pretty_generate(object)
+    File.open(file, 'w') { |file| file.write(json) }
   end
 end
 
