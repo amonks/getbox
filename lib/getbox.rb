@@ -13,7 +13,7 @@ module Getbox
   Capybara.app_host =  "http://app.gistboxapp.com"
   Capybara.run_server = false
 
-  def getGistsFromPrompt()
+  def prompt()
     puts "What's your github username?"
     username = gets.chomp
     puts "How about your password, eh??"
