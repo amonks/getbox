@@ -1,3 +1,5 @@
+[![Gem](https://img.shields.io/gem/dt/getbox.svg?style=plastic)]()
+
 # Getbox
 
 [GistBox](http://gistboxapp.com) lets you tag/label your GitHub Gists, but it doesn't let you export that label data.
