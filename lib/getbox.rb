@@ -24,7 +24,7 @@ module Getbox
 
     gists = getGistsFromSite(username, password)
 
-    puts "Saving #{gists.length} gists to #{_DIR_}/#{file}"
+    puts "Saving #{gists.length} gists to #{Dir.pwd}/#{file}"
     writeToFile(gists, file)
   end
 
