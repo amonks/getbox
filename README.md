@@ -1,6 +1,8 @@
 # Getbox
 
-The `getbox` gem installs a global executable, which will guide you through exporting your gists.
+[GistBox](http://gistboxapp.com) lets you tag/label your GitHub Gists, but it doesn't let you export that label data.
+
+The `getbox` gem installs a global executable, which will guide you through exporting your gists from GistBox.
 
     $ gem install getbox
     Successfully installed getbox-1.0.3
@@ -26,7 +28,7 @@ The `getbox` gem installs a global executable, which will guide you through expo
 
 ## API
 
-You can even use the getbox gem from your own scripts, if you want.
+You can even use the getbox gem in your own scripts, if you want.
 
 ### method to enter an interactive prompt and save gists to a file as JSON:
 
