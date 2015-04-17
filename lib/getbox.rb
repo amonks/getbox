@@ -14,7 +14,7 @@ module Getbox
   Capybara.app_host =  "http://app.gistboxapp.com"
   Capybara.run_server = false
 
-  def prompt
+  def getGistsFromPrompt()
     puts "What's your github username?"
     username = gets.chomp
     puts "How about your password, eh??"
@@ -25,7 +25,7 @@ module Getbox
 
     gists = getGistsFromSite(username, password)
     binding.pry
-    writeToFile(JSON.pretty_generate(gists), file)
+    writeToFile(gists, file)
   end
 
   def getGistsFromSite(username, password)
@@ -83,7 +83,7 @@ module Getbox
     File.open(file, 'w') { |file| file.write(json) }
   end
 
-  def whitelist_urls
+  def whitelist_urls()
     page.driver.block_unknown_urls
     urls = [
       'app.gistboxapp.com',
