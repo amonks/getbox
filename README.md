@@ -1,14 +1,6 @@
 # Getbox
 
-## Installation
-
-Install as a gem:
-
-    gem install gembox
-
-## Usage
-
-The gem installs a global `gembox` executable, which will guide you through exporting your gists. Sometimes it takes a minute.
+The `getbox` gem installs a global executable, which will guide you through exporting your gists.
 
     $ gem install getbox
     Successfully installed getbox-1.0.3
@@ -34,14 +26,18 @@ The gem installs a global `gembox` executable, which will guide you through expo
 
 ## API
 
+You can even use the getbox gem from your own scripts, if you want.
+
 ### method to enter an interactive prompt and save gists to a file as JSON:
 
-Getbox::prompt
+    Getbox::prompt
 
 ### methods to return an array of gists:
 
-Getbox::getGistsFromSite(username, password)
+    Getbox::getGistsFromSite(username, password)
+    
+    Getbox::getGistsFromFile(location_of_html_file)
+    
+    Getbox::getGistsFromHtml(html_string)
 
-Getbox::getGistsFromFile(location_of_html_file)
-
-Getbox::getGistsFromHtml(html_string)
+The html should be from `https://app.gistboxapp.com/library/my-gists`
