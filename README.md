@@ -1,4 +1,4 @@
-[![Gem](https://img.shields.io/gem/dt/getbox.svg?style=plastic)]()
+[![Gem](https://img.shields.io/gem/v/getbox.svg?style=plastic)]()
 
 # Getbox
 
