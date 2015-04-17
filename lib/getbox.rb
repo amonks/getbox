@@ -66,7 +66,7 @@ module Getbox
 
       description = gist.css('div.gist-description').inner_text.strip
       description = nil if description == 'No Description'
-      data[:description] = description
+      data[:description] = description if description
 
       labels = []
       gist.css('span.gist-label').each {|label| labels.push label.inner_text}
