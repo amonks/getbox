@@ -1,19 +1,30 @@
 require 'getbox/version'
-require 'nokogiri'
-require 'capybara/dsl'
-require 'capybara-webkit'
-require 'open-uri'
-require 'json'
-
+require 'nokogiri'          # for parsing html
+require 'capybara/dsl'      # to operate the headless browser
+require 'capybara-webkit'   # the headless browser
+require 'json'              # for pretty json output
 
 module Getbox
-  include Capybara::DSL
 
+  # configure Capybara
+  include Capybara::DSL
   Capybara.default_driver = :webkit
   Capybara.app_host =  "http://app.gistboxapp.com"
   Capybara.run_server = false
 
+  # to use getbox interactively and write output to a file
   def prompt()
+    # get credentials
+    puts \
+      "I'm about to ask for your github password. \n"\
+      "You should probably read my source code\n"\
+      "before you go through with this...\n"\
+      "https://github.com/amonks/getbox/blob/master/lib/getbox.rb\n\n"\
+      \
+      "are you sure you want to continue?"
+
+    raise "Well, OK then." if gets.chomp.downcase.include? "no"
+
     puts "What's your github username?"
     username = gets.chomp
     puts "How about your password, eh??"
@@ -35,12 +46,14 @@ module Getbox
     puts "visiting app.gistboxapp.com"
     visit '/'
     click_on "Login"
+
     puts "filling out github login form"
     within("#login") do
       fill_in("login", :with => username)
       fill_in("password", :with => password)
       click_on "Sign in"
     end
+
     puts "gathering gists"
     getGistsFromHtml(page.html)
   end
@@ -81,7 +94,7 @@ module Getbox
 
   def writeToFile(object, file)
     json = JSON.pretty_generate(object)
-    File.open(file, 'w') { |file| file.write(json) }
+    File.open(file, 'w') { |f| f.write(json) }
   end
 
   def whitelist_urls()
