@@ -24,6 +24,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "capybara"
   spec.add_runtime_dependency "capybara-webkit"
   spec.add_runtime_dependency "nokogiri"
-  spec.add_runtime_dependency "pry"
-  spec.add_runtime_dependency "pry-byebug"
 end

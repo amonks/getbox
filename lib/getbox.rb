@@ -1,5 +1,4 @@
 require 'getbox/version'
-require 'pry'
 require 'nokogiri'
 require 'capybara/dsl'
 require 'capybara-webkit'
@@ -24,7 +23,6 @@ module Getbox
     file = gets.chomp
 
     gists = getGistsFromSite(username, password)
-    binding.pry
     writeToFile(gists, file)
   end
 
