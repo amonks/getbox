@@ -1,6 +1,3 @@
-require 'bundler'
-Bundler.require
-
 require 'getbox/version'
 require 'capybara/dsl'
 require 'capybara-webkit'
@@ -29,7 +26,6 @@ module Getbox
   end
 
   def getGistsFromSite(username, password)
-    page.driver.allow_unknown_urls
 
     puts "visiting app.gistboxapp.com"
     visit '/'
