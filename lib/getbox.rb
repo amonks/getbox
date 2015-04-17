@@ -19,8 +19,9 @@ module Getbox
     puts "How about your password, eh??"
     password = gets.chomp
 
-    puts "Where should I save your gists?"
+    puts "Where should I save your gists? [gists.json]"
     file = gets.chomp
+    file = "gists.json" if file.empty?
 
     gists = getGistsFromSite(username, password)
 
