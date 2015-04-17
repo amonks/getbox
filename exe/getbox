@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
+# pretend we're in the lib folder
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'getbox'
 include Getbox
 
-exit prompt
+exit prompt # exit on completion

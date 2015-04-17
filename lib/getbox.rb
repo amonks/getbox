@@ -14,7 +14,7 @@ module Getbox
 
   # to use getbox interactively and write output to a file
   def prompt()
-    # get credentials
+    # people shouldn't feel comfortable typing passwords into things.
     puts \
       "I'm about to ask for your github password. \n"\
       "You should probably read my source code\n"\
@@ -30,6 +30,7 @@ module Getbox
     puts "How about your password, eh??"
     password = gets.chomp
 
+    # doesn't support anything cool like ~, only a locally relative path
     puts "Where should I save your gists? [gists.json]"
     file = gets.chomp
     file = "gists.json" if file.empty?
@@ -40,29 +41,34 @@ module Getbox
     writeToFile(gists, file)
   end
 
+  # method to go to app.gistboxapp.com, and log in with github credentials
   def getGistsFromSite(username, password)
+    # partly to avoid warnings, and partly to avoid hitting analytics
     whitelist_urls
 
     puts "visiting app.gistboxapp.com"
     visit '/'
-    click_on "Login"
+    click_on "Login"      # redirect to github login page
 
     puts "filling out github login form"
     within("#login") do
       fill_in("login", :with => username)
       fill_in("password", :with => password)
-      click_on "Sign in"
+      click_on "Sign in"  # back to gistbox.app
     end
 
     puts "gathering gists"
     getGistsFromHtml(page.html)
   end
 
+  # convenience wrapper for file.open.
+  # saving gistbox's dashboard html in chrome is faster than fetching it in ruby.
   def getGistsFromFile(file)
     f = File.open(file)
     getGistsFromHtml(f)
   end
 
+  # main function to parse the gist data from gistbox's interface
   def getGistsFromHtml(html)
     doc = Nokogiri::HTML(html)
 
@@ -92,15 +98,17 @@ module Getbox
     gists
   end
 
+  # convenience wrapper for json-and-print
   def writeToFile(object, file)
     json = JSON.pretty_generate(object)
     File.open(file, 'w') { |f| f.write(json) }
   end
 
+  # set up capybara-webkit's whitelest
   def whitelist_urls()
-    page.driver.block_unknown_urls
+    page.driver.block_unknown_urls  # block tracking and media, disable warnings
     urls = [
-      'app.gistboxapp.com',
+      'app.gistboxapp.com',         # whitelist the servers we need
       'github.com',
     ]
     urls.each { |url| page.driver.allow_url(url) }
