@@ -23,6 +23,8 @@ module Getbox
     file = gets.chomp
 
     gists = getGistsFromSite(username, password)
+
+    puts "Saving #{gists.length} gists to #{_DIR_}/#{file}"
     writeToFile(gists, file)
   end
 
