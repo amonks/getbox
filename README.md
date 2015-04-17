@@ -6,4 +6,4 @@ getbox requires the [edge version](https://github.com/thoughtbot/capybara-webkit
 
 ## Usage
 
-After checking out the repo, run `bundle` to install dependencies. Then, run `bin/getbox` for an interactive prompt that will take you through exporting your gists.
+After checking out the repo, run `bundle` to install dependencies. Then, run `exe/getbox` for an interactive prompt that will take you through exporting your gists.
